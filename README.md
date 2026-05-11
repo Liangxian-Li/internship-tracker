@@ -4,8 +4,8 @@ Internship Tracker is a backend project built with Node.js, Express, MongoDB, Do
 
 ## Current Project Status
 
-This is the backend version of the project with engineering and monitoring features added.  
-The frontend has not been added yet.
+This project now includes the backend plus a simple React frontend for class demos.  
+The frontend shows the main workflow: register, login, add applications, view applications, update status, and delete applications.
 
 ## Tech Stack
 
@@ -15,6 +15,8 @@ The frontend has not been added yet.
 - Docker
 - Docker Compose
 - JWT Authentication
+- React
+- Vite
 - Postman
 - GitHub Actions
 - Grafana
@@ -33,6 +35,16 @@ The frontend has not been added yet.
 - Update an application
 - Delete an application
 - Filter applications by status
+
+### Frontend Demo
+- Register and login forms
+- JWT stored in browser localStorage after login
+- Dashboard with application status counts
+- Add application form
+- Application list with status filter
+- Update status from the list
+- Delete application button
+- Logout button
 
 ### Engineering / DevOps Features
 - MongoDB containerized with Docker
@@ -95,11 +107,35 @@ The backend runs at:
 http://localhost:5000
 ```
 
-### 3. Grafana
+### 3. Frontend UI
+
+Open a second terminal and run:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+The frontend is configured to prefer:
+
+```text
+http://localhost:3000
+```
+
+The backend uses `FRONTEND_ORIGIN` for CORS, so make sure `backend/.env` includes:
+
+```env
+FRONTEND_ORIGIN=http://localhost:3000
+```
+
+If port `3000` is already being used by Grafana, either stop Grafana while presenting the frontend or run the frontend on another port and update `FRONTEND_ORIGIN` to match that URL.
+
+### 4. Grafana
 
 Grafana runs at:
 ```text
-http://localhost:3000
+http://localhost:3001
 ```
 
 Default login:
@@ -108,7 +144,7 @@ Username: admin
 Password: admin123
 ```
 
-### 4. Loki
+### 5. Loki
 
 Loki metrics endpoint:
 ```text
@@ -156,7 +192,6 @@ GET /api/applications?status=Applied
 
 ## Future Improvements
 
-- Add a frontend UI.
 - Add dashboards for application metrics.
 - Add more automated tests.
 - Improve monitoring panels in Grafana.
